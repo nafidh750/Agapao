@@ -1,7 +1,7 @@
 <?php
 $receiving_email_address = 'info@agapao.co.tz';
 
-if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
+if (file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php')) {
   include($php_email_form);
 } else {
   die('Unable to load the "PHP Email Form" Library!');
@@ -15,14 +15,15 @@ $contact->from_name = $_POST['email'];
 $contact->from_email = $_POST['email'];
 $contact->subject = "New Subscription: " . $_POST['email'];
 
-// Optional: add more info
-$contact->add_message($_POST['email'], 'Subscriber Email');
+// Add message
+$contact->add_message($_POST['email'], 'Email');
 
-echo $contact->send();
-?>
+// Send and respond properly
+$response = $contact->send();
 
-
-  $contact->add_message( $_POST['email'], 'Email');
-
-  echo $contact->send();
+if ($response === 'OK') {
+  echo 'Subscription successful.';
+} else {
+  echo 'Error: ' . $response;
+}
 ?>
