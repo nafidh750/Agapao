@@ -26,4 +26,5 @@ if ($response === 'OK') {
 } else {
   echo 'Error: ' . $response;
 }
-?>
+
+
